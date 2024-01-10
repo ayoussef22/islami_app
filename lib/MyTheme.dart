@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyTheme{
+
  static Color primaryLight=Color(0xffB7935F);
+
  static ThemeData lightTheme=ThemeData(
   primaryColor: primaryLight,
 scaffoldBackgroundColor: Colors.transparent,

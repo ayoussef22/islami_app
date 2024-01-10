@@ -42,7 +42,7 @@ class _SuraScreenState extends State<SuraScreen> {
                     itemCount: verses.length,
                     separatorBuilder: (context,index){
                       return Container(color: Theme.of(context).primaryColor,
-                      height: 2,);
+                      height: 2, margin: EdgeInsets.symmetric(horizontal: 20),);
                     },),
                  ),
 
