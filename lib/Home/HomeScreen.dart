@@ -26,8 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Scaffold(
             bottomNavigationBar: Theme(
               data: Theme.of(context).copyWith(
-                canvasColor:Theme.of(context).primaryColor
-              ),
+                canvasColor:Theme.of(context).primaryColor),
               child: BottomNavigationBar(
                 currentIndex:selectedIndex ,
                 onTap: (index){
