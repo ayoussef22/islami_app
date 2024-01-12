@@ -3,7 +3,7 @@ import 'package:islami_app/Home/Hadeth/HadethScreen.dart';
 import 'package:islami_app/Home/HomeScreen.dart';
 import 'package:islami_app/Home/Quran/SuraScreen.dart';
 import 'package:islami_app/MyTheme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main(){
   runApp(MyApp());
 }
@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget{
         HadethScreen.routeName:(context)=>HadethScreen(),
       },
       initialRoute: HomeScreen.routeName,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: Locale('en'),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SebhaTab extends StatefulWidget {
 
@@ -43,7 +44,7 @@ class _SebhaTabState extends State<SebhaTab> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text
-              ('عـدد الـسبـحـات',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+              (AppLocalizations.of(context)!.number_of_praises,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.3,
