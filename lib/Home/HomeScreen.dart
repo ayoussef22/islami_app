@@ -5,6 +5,8 @@ import 'package:islami_app/Home/Radio/RadioTab.dart';
 import 'package:islami_app/Home/Sebha/SebhaTab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/Home/Settings/SettingsTab.dart';
+import 'package:islami_app/Providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
 static const String routeName='home';
@@ -18,9 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex=0;
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     return SafeArea(
       child: Stack(
         children: [
+          provider.appTheme==ThemeMode.dark ?
+      Image.asset('assets/images/background_dark.png',
+        height: double.infinity,
+        width: double.infinity,
+        fit: BoxFit.fill):
           Image.asset('assets/images/background.png',
           height: double.infinity,
           width: double.infinity,

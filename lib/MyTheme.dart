@@ -24,9 +24,20 @@ scaffoldBackgroundColor: Colors.transparent,
     size: 35
    )
   ),
-  textTheme: TextTheme(
-   titleLarge: TextStyle()
-  )
+     textTheme: TextTheme(
+         titleLarge: TextStyle(
+             fontWeight: FontWeight.bold,
+             fontSize: 30
+         ),
+         titleMedium: TextStyle(
+             fontSize: 25,
+             fontWeight: FontWeight.w400
+         ),
+         titleSmall: TextStyle(
+           fontWeight: FontWeight.w400,
+           fontSize: 20,
+         )
+     )
 
  );
 
@@ -48,9 +59,22 @@ scaffoldBackgroundColor: Colors.transparent,
     size: 35
    )
   ),
-  textTheme: TextTheme(
-   titleLarge: TextStyle()
-  )
+     textTheme: TextTheme(
+         titleLarge: TextStyle(
+             fontWeight: FontWeight.bold,
+             fontSize: 30,
+             color: Colors.white
+         ),
+         titleMedium: TextStyle(
+             fontSize: 25,
+             fontWeight: FontWeight.w400,
+             color: yellowColor
+         ),
+         titleSmall: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 20,
+         )
+     )
 
  );
 }

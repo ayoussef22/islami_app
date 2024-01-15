@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/Home/Hadeth/HadethNameItem.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/Providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
+
+import '../../MyTheme.dart';
 
 class HadethTab extends StatefulWidget {
 
@@ -13,6 +17,7 @@ class _HadethTabState extends State<HadethTab> {
   List<Hadeth> ahadethList=[];
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     if (ahadethList.isEmpty){
       LoadHadethFile();
     }
@@ -33,9 +38,14 @@ class _HadethTabState extends State<HadethTab> {
                 Container(
                   margin: EdgeInsets.only(top: 12,bottom: 8),
                   padding: EdgeInsets.all(8),
-                  child: Center(child: Text(AppLocalizations.of(context)!.hadeth_name,style: TextStyle(fontSize: 23),),),
+                  child: Center(child: Text(AppLocalizations.of(context)!.hadeth_name,
+                    style:provider.appTheme==ThemeMode.dark ?
+                    Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white):
+                    Theme.of(context).textTheme.titleMedium),),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Theme.of(context).primaryColor,width: 2)
+                      border: Border.all(color: provider.appTheme==ThemeMode.dark?
+                      MyTheme.yellowColor:
+                      Theme.of(context).primaryColor,width: 2)
                   ),
                 ),
                 ahadethList.isEmpty ?
@@ -46,7 +56,9 @@ class _HadethTabState extends State<HadethTab> {
                         return HadethNameItem(hadeth: ahadethList[index]);
                       },
                       separatorBuilder: (context,index){
-                        return Container(color: Theme.of(context).primaryColor,
+                        return Container(color: provider.appTheme==ThemeMode.dark?
+                        MyTheme.yellowColor:
+                        Theme.of(context).primaryColor,
                           height: 2,);
                       },
                       itemCount: ahadethList.length),

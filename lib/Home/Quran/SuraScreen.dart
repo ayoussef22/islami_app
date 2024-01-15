@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/Home/Quran/AyaItem.dart';
+import 'package:provider/provider.dart';
+
+import '../../MyTheme.dart';
+import '../../Providers/AppConfigProvider.dart';
 
 class SuraScreen extends StatefulWidget {
 static const String routeName='sura screen';
@@ -12,6 +16,7 @@ static const String routeName='sura screen';
 class _SuraScreenState extends State<SuraScreen> {
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     var args=ModalRoute.of(context)?.settings.arguments as SuraScreenArgs;
     if (verses.isEmpty){
       LoadFileContet(args.suraPositionArg);
@@ -19,10 +24,15 @@ class _SuraScreenState extends State<SuraScreen> {
     return SafeArea(
       child: Stack(
         children: [
-         Image.asset('assets/images/background.png',
-         width: double.infinity,
-         height: double.infinity,
-         fit: BoxFit.fill,),
+          provider.appTheme==ThemeMode.dark ?
+          Image.asset('assets/images/background_dark.png',
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.fill):
+          Image.asset('assets/images/background.png',
+            height: double.infinity,
+            width: double.infinity,
+            fit: BoxFit.fill,),
           Scaffold(
             appBar: AppBar(title: Text('${args.suraNameArg}'),),
             body: verses==0?
@@ -41,7 +51,9 @@ class _SuraScreenState extends State<SuraScreen> {
                     },
                     itemCount: verses.length,
                     separatorBuilder: (context,index){
-                      return Container(color: Theme.of(context).primaryColor,
+                      return Container(color: provider.appTheme==ThemeMode.dark?
+                      MyTheme.yellowColor:
+                      Theme.of(context).primaryColor,
                       height: 2, margin: EdgeInsets.symmetric(horizontal: 20),);
                     },),
                  ),

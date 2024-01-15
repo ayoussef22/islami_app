@@ -3,8 +3,7 @@ import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LanguageBottomSheet extends StatefulWidget {
-  const LanguageBottomSheet({Key? key}) : super(key: key);
+  class LanguageBottomSheet extends StatefulWidget {
 
   @override
   State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
@@ -17,6 +16,9 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
     return
        Container(
          width: double.infinity,
+         color: provider.appTheme==ThemeMode.dark?
+         Theme.of(context).primaryColor:
+         Colors.white,
          child: Padding(
            padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 10),
            child: Column(
@@ -46,14 +48,17 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   }
 
   Widget SelectedLanguageWidget(String language){
+    var provider=Provider.of<AppConfigProvider>(context);
     return
     Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(language,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          Icon(Icons.check_circle,color: Theme.of(context).primaryColor,)
+          Text(language,style: Theme.of(context).textTheme.titleMedium),
+          Icon(Icons.check_circle,color: provider.appTheme==ThemeMode.dark?
+          Color(0xffFACC1D):
+          Theme.of(context).primaryColor)
         ],
       ),
     );
@@ -64,7 +69,8 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
     child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text(language,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+    Text(language,style:
+    Theme.of(context).textTheme.titleMedium),
     ],
     )
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/Home/Quran/SuraNamesItem.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/MyTheme.dart';
+import 'package:islami_app/Providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
 
 class QuranTab extends StatelessWidget {
   List<String>names=['الفاتحة','البقرة','آل عمران','النساء','المآئدة','الأنعام','الأعراف',
@@ -15,6 +18,7 @@ class QuranTab extends StatelessWidget {
     'النصر','المسد','الإخلاص','الفلق','الناس',];
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     return Column(
       children: [
         Expanded(
@@ -32,9 +36,17 @@ class QuranTab extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 12,bottom: 8),
                   padding: EdgeInsets.all(8),
-                  child: Center(child: Text(AppLocalizations.of(context)!.sura_name,style: TextStyle(fontSize: 23),),),
+                  child: Center(child: Text(AppLocalizations.of(context)!.sura_name,
+                      style: provider.appTheme==ThemeMode.dark ?
+                      Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white):
+                      Theme.of(context).textTheme.titleMedium
+                  )
+                    ,),
                           decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).primaryColor,width: 2)
+                border: Border.all(color: provider.appTheme==ThemeMode.dark?
+                  MyTheme.yellowColor:
+                Theme.of(context).primaryColor,
+                    width: 2)
                           ),
                         ),
                 Expanded(child: ListView.separated(
@@ -42,7 +54,9 @@ class QuranTab extends StatelessWidget {
                       return SuraNamesItem(suraName: names[index],suraPosition: index,);
                     },
                     separatorBuilder: (context,index){
-                      return Container(color: Theme.of(context).primaryColor,
+                      return Container(color: provider.appTheme==ThemeMode.dark?
+                        MyTheme.yellowColor:
+                        Theme.of(context).primaryColor,
                       height: 2,);
                     },
                     itemCount: names.length))

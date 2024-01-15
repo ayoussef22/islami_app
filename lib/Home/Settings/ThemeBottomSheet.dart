@@ -17,6 +17,9 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
     return
        Container(
          width: double.infinity,
+         color: provider.appTheme==ThemeMode.dark?
+         Theme.of(context).primaryColor:
+         Colors.white,
          child: Padding(
            padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 10),
            child: Column(
@@ -46,14 +49,18 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   }
 
   Widget SelectedThemeWidget(String language){
+    var provider =Provider.of<AppConfigProvider>(context);
     return
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(language,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-            Icon(Icons.check_circle,color: Theme.of(context).primaryColor,)
+            Text(language,style: Theme.of(context).textTheme.titleMedium
+            ),
+            Icon(Icons.check_circle,color: provider.appTheme==ThemeMode.dark?
+            Color(0xffFACC1D):
+            Theme.of(context).primaryColor)
           ],
         ),
       );
@@ -64,7 +71,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(language,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+            Text(language,style: Theme.of(context).textTheme.titleMedium),
           ],
         )
     );
