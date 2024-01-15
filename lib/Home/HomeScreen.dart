@@ -4,6 +4,7 @@ import 'package:islami_app/Home/Quran/QuranTab.dart';
 import 'package:islami_app/Home/Radio/RadioTab.dart';
 import 'package:islami_app/Home/Sebha/SebhaTab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/Home/Settings/SettingsTab.dart';
 
 class HomeScreen extends StatefulWidget {
 static const String routeName='home';
@@ -13,7 +14,7 @@ static const String routeName='home';
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget>tabs=[QuranTab(),HadethTab(),SebhaTab(),RadioTab()];
+  List<Widget>tabs=[QuranTab(),HadethTab(),SebhaTab(),RadioTab(),SettingsTab()];
   int selectedIndex=0;
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   BottomNavigationBarItem(
                       icon: ImageIcon(AssetImage('assets/images/icon_radio.png')),
                   label: AppLocalizations.of(context)!.radio),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings_outlined,),
+                  label: 'Settings'),
                 ],
               ),
             ),
