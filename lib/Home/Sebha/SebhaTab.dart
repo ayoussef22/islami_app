@@ -75,7 +75,7 @@ class _SebhaTabState extends State<SebhaTab> {
               width: MediaQuery.of(context).size.width*0.5,
               height: MediaQuery.of(context).size.height*0.1,
               alignment: Alignment.center,
-              margin: EdgeInsets.only(top: 12),
+              margin: EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
                 color:provider.appTheme==ThemeMode.dark?
                     MyTheme.yellowColor:
