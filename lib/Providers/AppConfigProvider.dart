@@ -10,7 +10,7 @@ class AppConfigProvider extends ChangeNotifier{
     prefs=await SharedPreferences.getInstance();
     appLanguage=prefs.getString("language")??'en';
     String theme=prefs.getString("theme")??'light';
-    if(theme==ThemeMode.light){
+    if(theme=='light'){
       appTheme=ThemeMode.light;
     }else{
       appTheme=ThemeMode.dark;
