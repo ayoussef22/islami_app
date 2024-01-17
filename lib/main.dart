@@ -6,9 +6,10 @@ import 'package:islami_app/MyTheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
-void main(){
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(ChangeNotifierProvider(
-    create: (context)=>AppConfigProvider(),
+    create: (context)=>AppConfigProvider()..init(),
       child: MyApp()));
 }
 class MyApp extends StatelessWidget{

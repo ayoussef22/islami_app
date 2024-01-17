@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/Home/Settings/LanguageBottomSheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/Home/Settings/ThemeBottomSheet.dart';
+import 'package:islami_app/MyTheme.dart';
 import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +42,11 @@ class _SettingsTabState extends State<SettingsTab> {
                 Text(provider.appLanguage=='en'?
                 AppLocalizations.of(context)!.english :
                 AppLocalizations.of(context)!.arabic
-                  ,style: Theme.of(context).textTheme.titleMedium,), Icon(Icons.arrow_drop_down_outlined)
+                  ,style: Theme.of(context).textTheme.titleMedium,),
+                Icon(Icons.arrow_drop_down_outlined,
+                    color: provider.appTheme==ThemeMode.dark?
+                    MyTheme.yellowColor:
+                    Colors.black)
               ],
             ),
           ),
@@ -66,7 +71,11 @@ class _SettingsTabState extends State<SettingsTab> {
                   Text(provider.appTheme==ThemeMode.dark?
                   AppLocalizations.of(context)!.dark :
                   AppLocalizations.of(context)!.light
-                    ,style: Theme.of(context).textTheme.titleMedium), Icon(Icons.arrow_drop_down_outlined)
+                    ,style: Theme.of(context).textTheme.titleMedium),
+                  Icon(Icons.arrow_drop_down_outlined,
+                  color: provider.appTheme==ThemeMode.dark?
+                    MyTheme.yellowColor:
+                    Colors.black)
                 ],
               ),
             ),
