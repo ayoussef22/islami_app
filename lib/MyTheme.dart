@@ -51,7 +51,10 @@ scaffoldBackgroundColor: Colors.transparent,
    centerTitle: true,
    scrolledUnderElevation: 0,
    titleTextStyle: TextStyle(fontSize: 28,
-       color: Colors.white,fontWeight: FontWeight.bold)
+       color: Colors.white,fontWeight: FontWeight.bold),
+    iconTheme: IconThemeData(
+      color: yellowColor
+    )
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
    selectedItemColor: yellowColor,

@@ -21,67 +21,69 @@ class _SettingsTabState extends State<SettingsTab> {
       margin: EdgeInsets.symmetric(
           vertical:MediaQuery.of(context).size.height*0.1,
           horizontal: MediaQuery.of(context).size.width*0.04),
-      child: Column( crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-        Text(AppLocalizations.of(context)!.language,
-          style: Theme.of(context).textTheme.titleLarge,),
-        Container(
-          padding: EdgeInsets.all(8),
-          margin: EdgeInsets.only(top: 12),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(12)
-          ),
-          child: InkWell(
-            onTap: (){
-              OnSelectLanguageClick();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(provider.appLanguage=='en'?
-                AppLocalizations.of(context)!.english :
-                AppLocalizations.of(context)!.arabic
-                  ,style: Theme.of(context).textTheme.titleMedium,),
-                Icon(Icons.arrow_drop_down_outlined,
-                    color: provider.appTheme==ThemeMode.dark?
-                    MyTheme.yellowColor:
-                    Colors.black)
-              ],
-            ),
-          ),
-        ),
-          SizedBox(height: MediaQuery.of(context).size.height*0.07,),
-          Text(AppLocalizations.of(context)!.theme,
+      child: SingleChildScrollView(
+        child: Column( crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+          Text(AppLocalizations.of(context)!.language,
             style: Theme.of(context).textTheme.titleLarge,),
           Container(
             padding: EdgeInsets.all(8),
             margin: EdgeInsets.only(top: 12),
             decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(12)
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(12)
             ),
             child: InkWell(
               onTap: (){
-                OnSelectThemeClick();
+                OnSelectLanguageClick();
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(provider.appTheme==ThemeMode.dark?
-                  AppLocalizations.of(context)!.dark :
-                  AppLocalizations.of(context)!.light
-                    ,style: Theme.of(context).textTheme.titleMedium),
+                  Text(provider.appLanguage=='en'?
+                  AppLocalizations.of(context)!.english :
+                  AppLocalizations.of(context)!.arabic
+                    ,style: Theme.of(context).textTheme.titleMedium,),
                   Icon(Icons.arrow_drop_down_outlined,
-                  color: provider.appTheme==ThemeMode.dark?
-                    MyTheme.yellowColor:
-                    Colors.black)
+                      color: provider.appTheme==ThemeMode.dark?
+                      MyTheme.yellowColor:
+                      Colors.black)
                 ],
               ),
             ),
           ),
-
-        ],
+            SizedBox(height: MediaQuery.of(context).size.height*0.07,),
+            Text(AppLocalizations.of(context)!.theme,
+              style: Theme.of(context).textTheme.titleLarge,),
+            Container(
+              padding: EdgeInsets.all(8),
+              margin: EdgeInsets.only(top: 12),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(12)
+              ),
+              child: InkWell(
+                onTap: (){
+                  OnSelectThemeClick();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(provider.appTheme==ThemeMode.dark?
+                    AppLocalizations.of(context)!.dark :
+                    AppLocalizations.of(context)!.light
+                      ,style: Theme.of(context).textTheme.titleMedium),
+                    Icon(Icons.arrow_drop_down_outlined,
+                    color: provider.appTheme==ThemeMode.dark?
+                      MyTheme.yellowColor:
+                      Colors.black)
+                  ],
+                ),
+              ),
+            ),
+        
+          ],
+        ),
       ),
     );
   }
