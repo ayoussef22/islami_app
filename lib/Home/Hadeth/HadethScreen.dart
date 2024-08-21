@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/Home/Hadeth/HadethLinesDetails.dart';
 import 'package:islami_app/Home/Hadeth/HadethTab.dart';
+import 'package:provider/provider.dart';
+
+import '../../Providers/AppConfigProvider.dart';
 
 class HadethScreen extends StatelessWidget {
   static const String routeName='hadeth screen';
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     var args=ModalRoute.of(context)?.settings.arguments as Hadeth;
     return SafeArea(
       child: Stack(
         children: [
+          provider.appTheme==ThemeMode.dark ?
+          Image.asset('assets/images/background_dark.png',
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.fill):
           Image.asset('assets/images/background.png',
-            width: double.infinity,
             height: double.infinity,
+            width: double.infinity,
             fit: BoxFit.fill,),
           Scaffold(
             appBar: AppBar(title: Text(args.hadethTiltle),),
