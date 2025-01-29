@@ -6,26 +6,26 @@ import 'package:islami_app/MyTheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
-void main()async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(ChangeNotifierProvider(
-    create: (context)=>AppConfigProvider()..init(),
-      child: MyApp()));
+      create: (context) => AppConfigProvider()..init(), child: MyApp()));
 }
-class MyApp extends StatelessWidget{
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    var provider=Provider.of<AppConfigProvider>(context);
+    var provider = Provider.of<AppConfigProvider>(context);
 
     return MaterialApp(
       theme: MyTheme.lightTheme,
       themeMode: provider.appTheme,
       darkTheme: MyTheme.darkTheme,
       routes: {
-        HomeScreen.routeName:(context)=>HomeScreen(),
-        SuraScreen.routeName:(context)=>SuraScreen(),
-        HadethScreen.routeName:(context)=>HadethScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        SuraScreen.routeName: (context) => SuraScreen(),
+        HadethScreen.routeName: (context) => HadethScreen(),
       },
       initialRoute: HomeScreen.routeName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

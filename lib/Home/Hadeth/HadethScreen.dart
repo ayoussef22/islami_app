@@ -34,7 +34,7 @@ class HadethScreen extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: Color.fromARGB(84, 255, 255, 255),
+                color: const Color.fromARGB(84, 255, 255, 255),
               ),
               child: ListView.builder(itemBuilder: (context,index){
                 return HadethLinesDetails(hadethLine: args.hadethContent[index]);

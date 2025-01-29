@@ -36,7 +36,7 @@ class _SuraScreenState extends State<SuraScreen> {
           Scaffold(
             appBar: AppBar(title: Text('${args.suraNameArg}'),),
             body: verses==0?
-            Center(child: CircularProgressIndicator(),):
+            const Center(child: CircularProgressIndicator(),):
                  Container(
                    margin: EdgeInsets.symmetric(
                      horizontal: MediaQuery.of(context).size.width*0.05,
@@ -44,7 +44,7 @@ class _SuraScreenState extends State<SuraScreen> {
                    ),
                    decoration: BoxDecoration(
                      borderRadius: BorderRadius.circular(30),
-                     color: Color.fromARGB(84, 255, 255, 255),
+                     color: const Color.fromARGB(84, 255, 255, 255),
                    ),
                    child: ListView.separated(itemBuilder: (context,index){
                       return AyaItem(aya: verses[index],ayaNum: index+1,);
@@ -54,7 +54,7 @@ class _SuraScreenState extends State<SuraScreen> {
                       return Container(color: provider.appTheme==ThemeMode.dark?
                       MyTheme.yellowColor:
                       Theme.of(context).primaryColor,
-                      height: 2, margin: EdgeInsets.symmetric(horizontal: 20),);
+                      height: 2, margin: const EdgeInsets.symmetric(horizontal: 20),);
                     },),
                  ),
 
