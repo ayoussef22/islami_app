@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/Home/Quran/SuraNamesItem.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/MyTheme.dart';
 import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
+
+import '../../l10n/app_localizations.dart';
 
 class QuranTab extends StatelessWidget {
   List<String> names = [

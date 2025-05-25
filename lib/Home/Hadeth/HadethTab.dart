@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/Home/Hadeth/HadethNameItem.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/Providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
 
 import '../../MyTheme.dart';
+import '../../l10n/app_localizations.dart';
 
 class HadethTab extends StatefulWidget {
   @override
