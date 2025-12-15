@@ -13,111 +13,143 @@ class SebhaTab extends StatefulWidget {
 class _SebhaTabState extends State<SebhaTab> {
   double myAngle = 0;
   int counter = 0;
+
   List<String> tasbehNameList = [
     'سبحان الله',
     'الحمد لله',
     'الله أكبر',
   ];
+
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
+
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // أحجام نسبية ثابتة
+    final double bodySize = screenWidth * 0.6;
+    final double headSize = screenWidth * 0.22;
+
     return Center(
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Container(
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height * 0.12),
-                    child: provider.appTheme == ThemeMode.dark
-                        ? Image.asset(
-                            'assets/images/sebha_head_dark.png',
-                            height: MediaQuery.of(context).size.height * 0.12,
-                          )
-                        : Image.asset(
-                            'assets/images/sebha_head.png',
-                            height: MediaQuery.of(context).size.height * 0.12,
-                          )),
-                Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.11),
-                  child: Transform.rotate(
-                    angle: myAngle,
-                    child: InkWell(
-                      onTap: OnSebhaClick,
-                      child: provider.appTheme == ThemeMode.dark
-                          ? Image.asset('assets/images/sebha_body_dark.png',
-                              height: MediaQuery.of(context).size.height * 0.3)
-                          : Image.asset('assets/images/sebha_body.png',
-                              height: MediaQuery.of(context).size.height * 0.3),
+            /// ================== السبحة ==================
+            SizedBox(
+              height: bodySize + headSize,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  /// جسم السبحة (بيلف)
+                  Positioned(
+                    top: headSize,
+                    left: (screenWidth - bodySize) / 2,
+                    child: Transform.rotate(
+                      angle: myAngle,
+                      alignment: Alignment.center,
+                      child: InkWell(
+                        onTap: onSebhaClick,
+                        child: Image.asset(
+                          provider.appTheme == ThemeMode.dark
+                              ? 'assets/images/sebha_body_dark.png'
+                              : 'assets/images/sebha_body.png',
+                          width: bodySize,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Text(
-                AppLocalizations.of(context)!.number_of_praises,
-                style: Theme.of(context).textTheme.titleLarge,
+
+                  /// رأس السبحة (ثابت – مزاح يمين وفوق)
+                  Positioned(
+                    top: headSize * 0.22,
+                    left: (screenWidth / 2) + bodySize * 0.12,
+                    child: Image.asset(
+                      provider.appTheme == ThemeMode.dark
+                          ? 'assets/images/sebha_head_dark.png'
+                          : 'assets/images/sebha_head.png',
+                      width: headSize,
+                    ),
+                  ),
+                ],
               ),
             ),
+
+            const SizedBox(height: 24),
+
+            /// ================== النص ==================
+            Text(
+              AppLocalizations.of(context)!.number_of_praises,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+
+            const SizedBox(height: 16),
+
+            /// ================== العداد ==================
             Container(
-              width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: screenWidth * 0.3,
+              height: screenWidth * 0.18,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: provider.appTheme == ThemeMode.dark
-                      ? Theme.of(context).primaryColor
-                      : const Color.fromARGB(255, 250, 250, 210),
-                  borderRadius: BorderRadius.circular(25)),
+                color: provider.appTheme == ThemeMode.dark
+                    ? Theme.of(context).primaryColor
+                    : const Color.fromARGB(255, 250, 250, 210),
+                borderRadius: BorderRadius.circular(25),
+              ),
               child: Text(
                 '$counter',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
+
+            const SizedBox(height: 16),
+
+            /// ================== اسم الذكر ==================
             Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: screenWidth * 0.55,
+              height: screenWidth * 0.18,
               alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
-                  color: provider.appTheme == ThemeMode.dark
-                      ? MyTheme.yellowColor
-                      : Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(25)),
+                color: provider.appTheme == ThemeMode.dark
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(25),
+              ),
               child: Text(
                 tasbehNameList[index],
                 style: provider.appTheme == ThemeMode.dark
                     ? Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: Theme.of(context).primaryColor)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(
+                  color: Theme.of(context).primaryColor,
+                )
                     : Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: Colors.white),
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: Colors.white),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  void OnSebhaClick() {
-    myAngle += 3;
+  /// ================== اللوجيك ==================
+  void onSebhaClick() {
+    setState(() {
+      myAngle += 0.25;
 
-    if (counter == 30) {
-      counter = 0;
-      index++;
-      if (index > 2) index = 0;
-    }
-    counter++;
-    setState(() {});
+      counter++;
+      if (counter == 30) {
+        counter = 0;
+        index++;
+        if (index == tasbehNameList.length) {
+          index = 0;
+        }
+      }
+    });
   }
 }
