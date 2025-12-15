@@ -28,7 +28,6 @@ class _SebhaTabState extends State<SebhaTab> {
 
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // أحجام نسبية ثابتة
     final double bodySize = screenWidth * 0.6;
     final double headSize = screenWidth * 0.22;
 
@@ -36,13 +35,11 @@ class _SebhaTabState extends State<SebhaTab> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            /// ================== السبحة ==================
             SizedBox(
               height: bodySize + headSize,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  /// جسم السبحة (بيلف)
                   Positioned(
                     top: headSize,
                     left: (screenWidth - bodySize) / 2,
@@ -61,7 +58,6 @@ class _SebhaTabState extends State<SebhaTab> {
                     ),
                   ),
 
-                  /// رأس السبحة (ثابت – مزاح يمين وفوق)
                   Positioned(
                     top: headSize * 0.22,
                     left: (screenWidth / 2) + bodySize * 0.12,
@@ -78,7 +74,6 @@ class _SebhaTabState extends State<SebhaTab> {
 
             const SizedBox(height: 24),
 
-            /// ================== النص ==================
             Text(
               AppLocalizations.of(context)!.number_of_praises,
               style: Theme.of(context).textTheme.titleLarge,
@@ -86,7 +81,6 @@ class _SebhaTabState extends State<SebhaTab> {
 
             const SizedBox(height: 16),
 
-            /// ================== العداد ==================
             Container(
               width: screenWidth * 0.3,
               height: screenWidth * 0.18,
@@ -105,7 +99,6 @@ class _SebhaTabState extends State<SebhaTab> {
 
             const SizedBox(height: 16),
 
-            /// ================== اسم الذكر ==================
             Container(
               width: screenWidth * 0.55,
               height: screenWidth * 0.18,
@@ -137,7 +130,6 @@ class _SebhaTabState extends State<SebhaTab> {
     );
   }
 
-  /// ================== اللوجيك ==================
   void onSebhaClick() {
     setState(() {
       myAngle += 0.25;
